@@ -1,0 +1,11 @@
+{% extends 'manage.html' %}
+
+{% block content %}
+  <h2>Manage Working Schedule</h2>
+  <form method="post" action="{% url 'manage_working_schedule' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Changes</button>
+  </form>
+  <!-- Add any additional content or messages here -->
+{% endblock %}

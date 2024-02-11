@@ -1,0 +1,29 @@
+<!-- In your 'services.html' file in the 'templates/appointment/' directory -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 style="color: #9900FF;">Our Services</h2>
+    <br><br><br><br>
+  <p>
+    At <strong style="color: #9900FF;">Alhamo Clinic</strong>, we are committed to providing a comprehensive range of dental services to address your oral health needs. Our experienced team, led by <em>Dr. Noor Ali Alhamo<em>, is dedicated to delivering top-notch care tailored to each patient.
+  </p>
+  <br><br>
+  <h3 style="color: #3CF3B6;">Dental Services</h3>
+
+  <ol style="color: #336699;">
+    <li><strong>General Dentistry:</strong> Routine check-ups, cleanings, and preventive care.</li>
+    <li><strong>Orthodontics:</strong> Correction of misaligned teeth and jaws for a straighter smile.</li>
+    <li><strong>Restorative Dentistry:</strong> Repair and restoration of damaged or missing teeth.</li>
+    <li><strong>Cosmetic Dentistry:</strong> Enhancing the aesthetics of your smile through various treatments.</li>
+    <li><strong>Implant Dentistry:</strong> Installation of artificial teeth for a natural and durable solution.</li>
+    <!-- Add more services as needed -->
+  </ol>
+  <br><br>
+  <p>
+    Whether you're seeking routine dental care or specialized treatments, our clinic is here to provide the highest quality services. We prioritize your comfort and satisfaction throughout your dental journey.
+  </p>
+  <br><br>
+  <p>
+    If you have specific questions about our services or would like to modify your appointment, please feel free to <a href="{% url 'contact' %}">contact us</a>.
+  </p>
+{% endblock %}

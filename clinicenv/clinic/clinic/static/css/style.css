@@ -1,0 +1,112 @@
+/* Reset some default margin and padding */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style for the navigation bar */
+nav {
+    background-color: #47F0B2; /* Dark background color */
+    color: white; /* Text color */
+    padding: 10px 0; /* Padding top and bottom */
+}
+
+/* Style for the logo in the navigation bar */
+.logo-container {
+    display: flex; /* Use flexbox to align logo and links */
+    align-items: center; /* Center items vertically */
+}
+
+.logo {
+    width: 150px; /* Adjust the width of the logo */
+    height: auto; /* Adjust the height of the logo */
+}
+
+.logo-space {
+    margin-right: 40px; /* Adjust the distance between the logo and navigation options */
+}
+/* Style for the links in the navigation bar */
+ul {
+    list-style: none; /* Remove default list styling */
+}
+
+ul li {
+    display: inline; /* Display list items horizontally */
+    margin-right: 20px; /* Margin between the links */
+}
+
+ul li a {
+    text-decoration: none; /* Remove underlines */
+    padding: 10px 20px; /* Padding for buttons */
+    border: 2px solid white; /* Border for buttons */
+    border-radius: 5px; /* Rounded corners for buttons */
+    color: white; /* Text color for buttons */
+    font-size: 24px; /* Font size for buttons */
+}
+
+.form-field {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+    font-size: 18px;
+    display: block;
+}
+
+.form-input {
+    width: 400px;
+    padding: 15px;
+    font-size: 18px;
+    height: 50px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Style for the main content container */
+.container {
+    max-width: 1200px; /* Set a maximum width for the content */
+    margin: 0 auto; /* Center the content horizontally */
+    padding: 20px; /* Padding around the content */
+}
+
+/* Style for the footer */
+footer {
+    background-color: #333; /* Dark background color */
+    color: white; /* Text color */
+    padding: 10px 0; /* Padding top and bottom */
+    text-align: center; /* Center the text in the footer */
+}
+
+.manage-option {
+    margin-left: auto; /* This pushes the "Manage" button to the right */
+    display: flex; /* Use flexbox to align the link to the right */
+}
+
+.manage-option a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px; /* Adjust as needed */
+}
+
+/* Responsive design for smaller screens */
+@media only screen and (max-width: 600px) {
+    ul {
+        flex-direction: column; /* Display list items as a column on smaller screens
+        text-align: center; /* Center the links on smaller screens */
+        margin-top: 10px; /* Add some margin at the top */
+    }
+
+    ul li {
+        margin-bottom: 10px; /* Add margin between the links */
+    }
+}

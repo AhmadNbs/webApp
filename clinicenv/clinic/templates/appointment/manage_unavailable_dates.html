@@ -1,0 +1,23 @@
+<!-- In your 'doctorControl/templates/doctorControl/manage_unavailable_dates.html' file -->
+{% extends 'manage.html' %}
+
+{% block content %}
+  <h2>Manage Unavailable Dates</h2>
+  <form method="post" action="{% url 'manage_unavailable_dates' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Unavailable Date</button>
+  </form>
+
+  {% if unavailable_dates %}
+    <h3>Unavailable Dates:</h3>
+    <ul>
+      {% for date in unavailable_dates %}
+        <li>{{ date.date }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No unavailable dates added.</p>
+  {% endif %}
+  <!-- Add any additional content or messages here -->
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'manage.html' %}
+
+{% block content %}
+
+<style>
+  h1 {
+    color: #333;
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tbody tr:hover {
+    background-color: #ddd;
+  }
+</style>
+
+    <h2>Appointment List</h2>
+    
+    <form method="get" action="{% url 'clinic_appointment_list' %}">
+        <label for="appointment_date">Select Date:</label>
+        <input type="text" id="appointment_date" name="appointment_date" value="{{ selected_date_str }}">
+        <button type="submit">Filter</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Email</th>
+          <th>Appointment Date</th>
+          <th>Appointment Time</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.first_name }} {{ appointment.last_name }}</td>
+                <td>{{ appointment.age }}</td>
+                <td>{{ appointment.email }}</td>
+                <td>{{ appointment.appointment_date|date:"M. d, Y"}}</td>
+                <td>{{ appointment.appointment_time.time|time:"H:i"}}</td>
+                <td id="status-{{ appointment.id }}">
+                  {{ appointment.status }}
+                  <input type="button" value="Accept" style="background-color: green; color: white;"
+                         onclick="updateStatus(this, {{ appointment.id }}, 'accepted')">
+                  <input type="button" value="Refuse" style="background-color: red; color: white;"
+                         onclick="updateStatus(this, {{ appointment.id }}, 'refused')">
+              </td>
+            </tr>
+        {% endfor %}
+          </tbody>
+    </table>
+
+  <script>
+    function updateStatus(element, appointmentId, status) {
+        const csrfToken = document.cookie.split('; ')
+            .find(row => row.startsWith('csrftoken='))
+            .split('=')[1];
+
+        fetch("{% url 'update_clinic_appointment_list' %}", {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify({
+                appointment_id: appointmentId,
+                status: status
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.updated) {
+                    // Update the status text in the table
+                    document.getElementById('status-' + appointmentId).innerText = status;
+                } else {
+                    console.error('Error updating status: Appointment not found or server error');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+  </script>
+
+  {% endblock %}
